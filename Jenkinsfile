@@ -6,7 +6,7 @@ pipeline {
         IMAGE_TAG = "latest"
         AWS_ACCOUNT_ID = "559050232518"
     }
-    //stages {
+    stages {
     //    stage("Checkout Code") {
     //        steps {
                 // Clone the GitHub repository
