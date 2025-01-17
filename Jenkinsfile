@@ -49,6 +49,7 @@ pipeline {
                     
                     // Update the image in the Kubernetes deployment and apply service configuration
                     sh """
+                        sed -i 's/{{IMAGE_TAG}}/${IMAGE_TAG}/g' k8s-deployment.yaml
                         kubectl apply -f k8s-deployment.yaml
                         kubectl set image deployment/node-hello node-hello=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG} --record
                         kubectl apply -f k8s-deployment.yaml
