@@ -6,13 +6,13 @@ pipeline {
         IMAGE_TAG = "latest"
         AWS_ACCOUNT_ID = "559050232518"
     }
-    stages {
-        stage("Checkout Code") {
-            steps {
+    //stages {
+    //    stage("Checkout Code") {
+    //        steps {
                 // Clone the GitHub repository
-                git branch: 'main', url: 'https://github.com/tamilsa/node-hello.git'
-            }
-        }
+    //            git branch: 'main', url: 'https://github.com/tamilsa/node-hello.git'
+    //        }
+    //    }
         stage("Build Docker Image") {
             steps {
                 script {
