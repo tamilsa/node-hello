@@ -10,4 +10,4 @@ spec:
   - protocol: TCP
     port: 80               # The port the service will expose internally
     targetPort: 6000       # The container port the service routes traffic to
-    nodePort: 6000         # The fixed NodePort to expose externally (between 30000–32767)
+    nodePort: 30001         # The fixed NodePort to expose externally (between 30000–32767)
