@@ -8,5 +8,5 @@ spec:
     app: node-hello
   ports:
   - protocol: TCP
-    port: 80               # The port the service will expose internally
+    port: 6000               # The port the service will expose internally
     targetPort: 6000       # The container port the service routes traffic to
