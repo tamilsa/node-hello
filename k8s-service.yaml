@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: node-hello-service
 spec:
-  type: ClusterIP           # Change type to ClusterIP
+  type: LoadBalancer         # Change type to LoadBalancer
   selector:
     app: node-hello
   ports:
   - protocol: TCP
-    port: 6000               # The port the service will expose internally
-    targetPort: 6000       # The container port the service routes traffic to
+    port: 6000               # The port the service will expose externally
+    targetPort: 6000
