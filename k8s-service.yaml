@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: node-hello-service
 spec:
-  type: LoadBalancer         # Change type to LoadBalancer
+  type: NodePort       
   selector:
     app: node-hello
   ports:
   - protocol: TCP
-    port: 6000               # The port the service will expose externally
+    port: 6000              
     targetPort: 6000
