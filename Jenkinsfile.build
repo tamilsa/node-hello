@@ -5,6 +5,7 @@ pipeline {
         ECR_REPO_NAME = "demo-ecr-repo"
         AWS_ACCOUNT_ID = "559050232518"
     }
+     stages {
         stage("Build Docker Image") {
             steps {
                 script {
