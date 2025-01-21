@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    environment {
+        AWS_REGION = "us-east-2"
+        ECR_REPO_NAME = "demo-ecr-repo"
+        IMAGE_TAG = latest
+        AWS_ACCOUNT_ID = "559050232518"
+    }
+    stages {
+        stage("Deploy to EKS") {
+            steps {
+                script {
+                    // Update kubeconfig to interact with the EKS cluster
+                    sh """
+                        aws eks update-kubeconfig --region ${AWS_REGION} --name eks-cluster
+                    """
+                    
+                    // Update the image in the Kubernetes deployment and apply service configuration
+                    sh """
+                        sed -i 's/{{IMAGE_TAG}}/${IMAGE_TAG}/g' k8s-deployment.yaml
+                        kubectl apply -f k8s-deployment.yaml
+                        kubectl set image deployment/node-hello node-hello=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG} --record
+                        kubectl apply -f k8s-deployment.yaml
+                        kubectl apply -f k8s-service.yaml
+                    """
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs() // Clean the workspace after the deployment
+        }
+    }
+}
