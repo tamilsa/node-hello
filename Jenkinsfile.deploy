@@ -16,11 +16,9 @@ pipeline {
                     """
                     
                     // Update the image in the Kubernetes deployment and apply service configuration
-                    sh """
-                      # sed -i 's/{{IMAGE_TAG}}/${IMAGE_TAG}/g' k8s-deployment.yaml
-                      # kubectl set image deployment/node-hello node-hello=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG} --record
-                       # kubectl delete -f k8s-deployment.yaml                       
+                    sh """                    
                         kubectl apply -f k8s-deployment.yaml
+                        kubectl rollout restart deployment/node-hello
                         kubectl apply -f k8s-service.yaml
                     """
                 }
