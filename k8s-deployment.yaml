@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node-hello
-        image: 559050232518.dkr.ecr.us-east-2.amazonaws.com/demo-ecr-repo:{{IMAGE_TAG}} # Replace with your ECR repo URI
+        image: 559050232518.dkr.ecr.us-east-2.amazonaws.com/demo-ecr-repo:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 6000
