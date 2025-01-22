@@ -40,7 +40,7 @@ pipeline {
             build job: 'app-deploy-pipeline', wait: true
         }
         always {
-            cleanWs() // Clean the workspace after the build
+    //        cleanWs() // Clean the workspace after the build
         }
     }
 }
