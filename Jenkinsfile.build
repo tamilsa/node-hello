@@ -39,8 +39,8 @@ pipeline {
             // Trigger the Deploy pipeline if Build is successful
             build job: 'app-deploy-pipeline', wait: true
         }
-        always {
+    //    always {
     //        cleanWs() // Clean the workspace after the build
-        }
+    //    }
     }
 }
